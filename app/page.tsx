@@ -1,65 +1,131 @@
+import type { ReactNode } from "react";
+
 import Image from "next/image";
 
-export default function Home() {
+import TrackedLink from "@/components/TrackedLink";
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main className="bg-white text-gray-900">
+      <section className="relative h-[70vh] min-h-[520px]">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/Backyard.avif"
+          alt="Sandbox Beach House backyard"
+          fill
           priority
+          sizes="100vw"
+          className="object-cover brightness-90"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
+        <div className="absolute inset-0 z-20 flex items-center">
+          <div className="mx-auto w-full max-w-5xl px-6 text-white">
+            <h1 className="mb-4 text-4xl font-bold drop-shadow-lg md:text-5xl">
+              A Private Beach House Steps from the Gulf — With a Pool
+            </h1>
+            <p className="mb-6 max-w-2xl text-lg drop-shadow md:text-xl">
+              The Sandbox is a one-of-a-kind Holmes Beach retreat with a private pool, unique backyard, and unbeatable
+              walk-to-beach location.
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <TrackedLink
+                href="https://www.vrbo.com/4984875ha"
+                eventLabel="VRBO Calendar"
+                className="bg-white text-black px-6 py-3 rounded-md font-semibold border"
+              >
+                View VRBO Calendar
+              </TrackedLink>
+              <a
+                href="#availability"
+                className="bg-black text-white px-6 py-3 rounded-md font-semibold"
+              >
+                Book Direct &amp; Save
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="bg-gray-50 py-12">
+        <div className="mx-auto max-w-5xl px-6 text-center">
+          <p className="text-lg font-medium">⭐⭐⭐⭐⭐ Highly rated on Airbnb &amp; VRBO</p>
+          <p className="mt-2 text-gray-600">Guests consistently book The Sandbox for its location, privacy, and unique vibe.</p>
         </div>
-      </main>
+      </section>
+
+      <section id="direct" className="py-16">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="mb-6 text-3xl font-bold">Why Book Direct with Sandbox Beach House</h2>
+          <ul className="grid gap-6 text-lg md:grid-cols-2">
+            <li>✔ Lower total cost — no platform service fees</li>
+            <li>✔ Direct communication with the owner</li>
+            <li>✔ Same home, same rules, better value</li>
+            <li>✔ Priority access to open weeks</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="mb-10 text-3xl font-bold">What Makes The Sandbox Different</h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            <Feature title="Private Heated Pool">Relax in your own secluded backyard oasis.</Feature>
+            <Feature title="Steps to the Beach">No busy roads — walk straight to the Gulf.</Feature>
+            <Feature title="Unique Backyard Vibe">
+              Former live-music venue with character you won’t find elsewhere.
+            </Feature>
+            <Feature title="Walkable Location">Shops, dining, and the free island trolley nearby.</Feature>
+            <Feature title="Dog Friendly">Bring your well-behaved pup along for the trip.</Feature>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            <Photo src="/Front.webp" alt="Exterior" />
+            <Photo src="/Backyard.avif" alt="Backyard" />
+            <Photo src="/61108cdc.jpg" alt="House" />
+            <Photo src="/w1918h1079x0y1-13973549.avif" alt="Property" />
+            <Photo src="/64de59fb.webp" alt="Sandbox Beach House" />
+            <Photo src="/6972a927.avif" alt="Sandbox Beach House" />
+          </div>
+        </div>
+      </section>
+
+      <section id="availability" className="bg-black py-20 text-white">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <h2 className="mb-4 text-3xl font-bold">Ready to Check Availability?</h2>
+          <p className="mb-8 text-lg">Dates fill quickly — especially peak season.</p>
+          <TrackedLink
+            href="https://www.vrbo.com/4984875ha"
+            eventLabel="VRBO Availability"
+            className="rounded-md bg-white px-8 py-4 font-semibold text-black hover:bg-gray-100"
+          >
+            View Available Dates
+          </TrackedLink>
+        </div>
+      </section>
+
+      <footer className="py-8 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} Sandbox Beach House · Holmes Beach, FL
+      </footer>
+    </main>
+  );
+}
+
+function Feature({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div>
+      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
+      <p className="text-gray-700">{children}</p>
+    </div>
+  );
+}
+
+function Photo({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-100">
+      <Image src={src} alt={alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
     </div>
   );
 }
