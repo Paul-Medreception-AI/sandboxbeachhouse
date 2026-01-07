@@ -7,7 +7,7 @@ import MobileCTA from "@/components/MobileCTA";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "VacationRental",
-  name: "Sandbox Beach House",
+  name: "The Sandbox Cottage",
   description: "Private beach house with pool in Holmes Beach, Anna Maria Island.",
   address: {
     "@type": "PostalAddress",
@@ -37,11 +37,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sandboxbeachhouse.com"),
-  title: "Sandbox Beach House | Holmes Beach Vacation Rental",
+  title: "The Sandbox Cottage — Steps to the Beach",
   description:
     "Private beach house steps from the Gulf with a pool. Walkable, unique, and highly rated. Book Sandbox Beach House direct or check availability.",
   openGraph: {
-    title: "Sandbox Beach House – Holmes Beach",
+    title: "The Sandbox Cottage — Steps to the Beach",
     description: "A private Holmes Beach house with pool, steps from the Gulf.",
     url: "https://sandboxbeachhouse.com",
     type: "website",

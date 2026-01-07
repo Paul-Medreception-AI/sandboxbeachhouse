@@ -5,7 +5,7 @@ export default function Nav() {
     <header className="fixed top-0 z-50 w-full border-b border-sky-200 bg-sky-50/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="text-lg font-bold text-slate-900">
-          Sandbox Beach House
+          The Sandbox Cottage
         </Link>
 
         <nav className="hidden gap-6 text-sm font-medium text-slate-700 md:flex">

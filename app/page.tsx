@@ -20,11 +20,11 @@ export default function HomePage() {
         <div className="absolute inset-0 z-20 flex items-center">
           <div className="mx-auto w-full max-w-5xl px-6 text-white">
             <h1 className="mb-4 text-4xl font-bold drop-shadow-lg md:text-5xl">
-              A Private Beach House Steps from the Gulf — With a Pool
+              The Sandbox Cottage — Steps to the Beach
             </h1>
             <p className="mb-6 max-w-2xl text-lg drop-shadow md:text-xl">
-              The Sandbox is a one-of-a-kind Holmes Beach retreat with a private pool, unique backyard, and unbeatable
-              walk-to-beach location.
+              The Sandbox is a one-of-a-kind 2BR/1.5BA Holmes Beach retreat with a private pool, unique backyard, and
+              unbeatable walk-to-beach location. Sleeps 6 with a queen sleeper sofa.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <TrackedLink
