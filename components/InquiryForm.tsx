@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormEvent } from "react";
+import { useState } from "react";
 
 declare global {
   interface Window {
@@ -14,11 +14,15 @@ type InquiryFormProps = {
 };
 
 export default function InquiryForm({ action }: InquiryFormProps) {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
     <form
       action={action}
       className="max-w-xl mx-auto space-y-4"
       onSubmit={() => {
+        setSubmitted(true);
+
         try {
           window.dataLayer = window.dataLayer ?? [];
           window.dataLayer.push({
@@ -65,6 +69,13 @@ export default function InquiryForm({ action }: InquiryFormProps) {
       >
         Request Availability
       </button>
+
+      {submitted && (
+        <p className="mt-2 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-600">
+          <span aria-hidden="true">✔</span>
+          Submission received! We'll reply shortly.
+        </p>
+      )}
     </form>
   );
 }
