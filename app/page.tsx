@@ -101,6 +101,25 @@ export default function HomePage() {
       </section>
 
       <section className="py-16">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:flex md:items-center md:justify-between">
+            <div>
+              <h2 className="text-3xl font-bold">Plan your island days</h2>
+              <p className="mt-2 max-w-2xl text-lg text-slate-600">
+                From beach mornings to sunset dinners, explore curated local experiences and favorite stops around Holmes Beach.
+              </p>
+            </div>
+            <a
+              href="/experiences"
+              className="mt-6 inline-flex rounded-full bg-black px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800 md:mt-0"
+            >
+              Explore Experiences
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-4 md:grid-cols-3">
             <Photo src="/Front.webp" alt="Exterior" />
