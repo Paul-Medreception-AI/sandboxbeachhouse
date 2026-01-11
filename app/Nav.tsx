@@ -12,6 +12,9 @@ export default function Nav() {
           <Link href="/photos" className="hover:text-sky-900">
             Photos
           </Link>
+          <Link href="/pool" className="hover:text-sky-900">
+            Pool
+          </Link>
           <Link href="/location" className="hover:text-sky-900">
             Location
           </Link>

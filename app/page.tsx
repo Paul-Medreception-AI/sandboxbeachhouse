@@ -8,8 +8,10 @@ import TrackedLink from "@/components/TrackedLink";
 
 export default function HomePage() {
   return (
-    <main className="bg-white text-gray-900">
+    <main className="bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
       <section className="relative h-[70vh] min-h-[520px]">
+        <div className="pointer-events-none absolute -left-24 -top-24 z-10 h-72 w-72 rounded-full bg-sky-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 -bottom-24 z-10 h-72 w-72 rounded-full bg-emerald-300/30 blur-3xl" />
         <Image
           src="/Backyard.avif"
           alt="Sandbox Beach House backyard"
@@ -21,6 +23,17 @@ export default function HomePage() {
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
         <div className="absolute inset-0 z-20 flex items-center">
           <div className="mx-auto w-full max-w-5xl px-6 text-white">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              <p className="inline-flex rounded-full bg-black/40 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-lg">
+                Holmes Beach · Anna Maria Island
+              </p>
+              <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                Private pool
+              </p>
+              <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                Dogs ≤ 35 lbs
+              </p>
+            </div>
             <h1 className="mb-4 text-4xl font-bold drop-shadow-lg md:text-5xl">
               The Sandbox Cottage — Steps to the Beach
             </h1>
@@ -28,26 +41,32 @@ export default function HomePage() {
               The Sandbox is a one-of-a-kind 2BR/1.5BA Holmes Beach retreat with a private pool, unique backyard, and
               unbeatable walk-to-beach location. Sleeps 6 with a queen sleeper sofa.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
+            <div className="flex gap-3 justify-center flex-wrap">
               <TrackedLink
                 href="https://www.vrbo.com/4984875ha"
                 eventLabel="VRBO Calendar"
-                className="bg-white text-black px-6 py-3 rounded-md font-semibold border"
+                className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/30 transition hover:bg-slate-100"
               >
                 View VRBO Calendar
               </TrackedLink>
               <a
                 href="#availability"
-                className="bg-black text-white px-6 py-3 rounded-md font-semibold"
+                className="rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/15"
               >
                 Book Direct &amp; Save
+              </a>
+              <a
+                href="/pool"
+                className="rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/15"
+              >
+                Pool Pages
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-12">
+      <section className="bg-gradient-to-b from-sky-50 to-white py-12">
         <div className="mx-auto max-w-5xl px-6 text-center">
           <p className="text-lg font-medium">⭐⭐⭐⭐⭐ Highly rated on Airbnb &amp; VRBO</p>
           <p className="mt-2 text-gray-600">Guests consistently book The Sandbox for its location, privacy, and unique vibe.</p>
@@ -57,16 +76,16 @@ export default function HomePage() {
       <section id="direct" className="py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="mb-6 text-3xl font-bold">Why Book Direct with Sandbox Beach House</h2>
-          <ul className="grid gap-6 text-lg md:grid-cols-2">
-            <li>✔ Lower total cost — no platform service fees</li>
-            <li>✔ Direct communication with the owner</li>
-            <li>✔ Same home, same rules, better value</li>
-            <li>✔ Priority access to open weeks</li>
+          <ul className="grid gap-4 md:grid-cols-2">
+            <li className="rounded-2xl border border-slate-200 bg-white p-6 text-lg text-slate-900 shadow-sm">✔ Lower total cost — no platform service fees</li>
+            <li className="rounded-2xl border border-slate-200 bg-white p-6 text-lg text-slate-900 shadow-sm">✔ Direct communication with the owner</li>
+            <li className="rounded-2xl border border-slate-200 bg-white p-6 text-lg text-slate-900 shadow-sm">✔ Same home, same rules, better value</li>
+            <li className="rounded-2xl border border-slate-200 bg-white p-6 text-lg text-slate-900 shadow-sm">✔ Priority access to open weeks</li>
           </ul>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gradient-to-b from-white to-sky-50 py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="mb-10 text-3xl font-bold">What Makes The Sandbox Different</h2>
           <div className="grid gap-8 md:grid-cols-3">
@@ -94,7 +113,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="availability" className="bg-slate-50 py-20">
+      <section id="availability" className="bg-gradient-to-b from-sky-50 via-white to-white py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-10 text-center text-slate-900">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#103780]">Plan Your Stay</p>
@@ -104,9 +123,34 @@ export default function HomePage() {
               you always see the latest availability before booking direct or through VRBO.
             </p>
           </div>
-          <Suspense fallback={<div className="rounded-3xl border border-slate-200 bg-white/50 p-10 text-center text-slate-500">Loading calendar…</div>}>
-            <AvailabilityPlanner />
-          </Suspense>
+
+          <div className="rounded-3xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+            <Suspense
+              fallback={
+                <div className="rounded-3xl border border-slate-200 bg-white/50 p-10 text-center text-slate-500">
+                  Loading calendar…
+                </div>
+              }
+            >
+              <AvailabilityPlanner />
+            </Suspense>
+          </div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <TrackedLink
+              href="https://www.vrbo.com/4984875ha"
+              eventLabel="VRBO Availability"
+              className="rounded-full bg-[#103780] px-8 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0b2b63]"
+            >
+              View Available Dates on VRBO
+            </TrackedLink>
+            <a
+              href="#direct"
+              className="rounded-full border border-slate-300 bg-white px-8 py-4 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
+            >
+              Why book direct?
+            </a>
+          </div>
         </div>
       </section>
 
@@ -118,17 +162,31 @@ export default function HomePage() {
 }
 
 function Feature({ title, children }: { title: string; children: ReactNode }) {
+  const icon =
+    title === "Private Heated Pool"
+      ? "🏊"
+      : title === "Steps to the Beach"
+        ? "🏖️"
+        : title === "Unique Backyard Vibe"
+          ? "🎶"
+          : title === "Walkable Location"
+            ? "🚶"
+            : title === "Dog Friendly"
+              ? "🐶"
+              : "✨";
+
   return (
-    <div>
-      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
-      <p className="text-gray-700">{children}</p>
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <p className="text-2xl">{icon}</p>
+      <h3 className="mt-4 mb-2 text-xl font-semibold text-slate-900">{title}</h3>
+      <p className="text-slate-700">{children}</p>
     </div>
   );
 }
 
 function Photo({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-100">
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-100 shadow-sm">
       <Image src={src} alt={alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
     </div>
   );
