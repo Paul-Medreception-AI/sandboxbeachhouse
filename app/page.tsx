@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 
 import Image from "next/image";
 
+import AvailabilityPlanner from "@/components/AvailabilityPlanner";
 import TrackedLink from "@/components/TrackedLink";
 
 export default function HomePage() {
@@ -92,17 +94,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="availability" className="bg-black py-20 text-white">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-4 text-3xl font-bold">Ready to Check Availability?</h2>
-          <p className="mb-8 text-lg">Dates fill quickly — especially peak season.</p>
-          <TrackedLink
-            href="https://www.vrbo.com/4984875ha"
-            eventLabel="VRBO Availability"
-            className="rounded-md bg-white px-8 py-4 font-semibold text-black hover:bg-gray-100"
-          >
-            View Available Dates
-          </TrackedLink>
+      <section id="availability" className="bg-slate-50 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-10 text-center text-slate-900">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#103780]">Plan Your Stay</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Live Availability & Direct Booking</h2>
+            <p className="mx-auto mt-3 max-w-3xl text-base text-slate-600 sm:text-lg">
+              Pick your ideal dates right on this page. We sync daily with our BeachRentals calendar ({`property #140`}) so
+              you always see the latest availability before booking direct or through VRBO.
+            </p>
+          </div>
+          <Suspense fallback={<div className="rounded-3xl border border-slate-200 bg-white/50 p-10 text-center text-slate-500">Loading calendar…</div>}>
+            <AvailabilityPlanner />
+          </Suspense>
         </div>
       </section>
 

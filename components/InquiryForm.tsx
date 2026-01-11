@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -11,10 +11,18 @@ declare global {
 
 type InquiryFormProps = {
   action: (formData: FormData) => void | Promise<void>;
+  prefillDates?: string;
 };
 
-export default function InquiryForm({ action }: InquiryFormProps) {
+export default function InquiryForm({ action, prefillDates }: InquiryFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const datesInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (!datesInputRef.current) return;
+    if (prefillDates === undefined) return;
+    datesInputRef.current.value = prefillDates;
+  }, [prefillDates]);
 
   return (
     <form
@@ -54,6 +62,7 @@ export default function InquiryForm({ action }: InquiryFormProps) {
         className="w-full border px-4 py-3 rounded-md"
       />
       <input
+        ref={datesInputRef}
         name="dates"
         placeholder="Preferred dates"
         className="w-full border px-4 py-3 rounded-md"

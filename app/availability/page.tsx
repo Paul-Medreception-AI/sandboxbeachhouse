@@ -1,5 +1,6 @@
 import { sendInquiry } from "@/app/actions/sendInquiry";
 
+import AvailabilityPlanner from "@/components/AvailabilityPlanner";
 import InquiryForm from "@/components/InquiryForm";
 import TrackedLink from "@/components/TrackedLink";
 
@@ -14,6 +15,8 @@ export default function AvailabilityPage() {
             Sandbox Beach House books quickly, especially during peak season.
             Availability is kept up to date through our primary booking platform.
           </p>
+
+          <AvailabilityPlanner />
 
           <div className="space-y-8 text-lg">
             <div>
@@ -65,7 +68,9 @@ export default function AvailabilityPage() {
               For fastest confirmation, availability is synced with VRBO.
               Prefer booking direct? Send us your dates and we’ll confirm options.
             </p>
-            <InquiryForm action={sendInquiry} />
+            <div className="mt-4">
+              <InquiryForm action={sendInquiry} />
+            </div>
           </div>
         </div>
       </section>
