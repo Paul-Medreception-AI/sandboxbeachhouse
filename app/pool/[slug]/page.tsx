@@ -65,12 +65,41 @@ export function generateMetadata({ params }: PageProps): Metadata {
       title: "Pool & Outdoor Living | Sandbox Beach House",
       description:
         "Explore pool and outdoor-living highlights at Sandbox Beach House on Anna Maria Island.",
+      openGraph: {
+        title: "Pool & Outdoor Living | Sandbox Beach House",
+        description:
+          "Explore pool and outdoor-living highlights at Sandbox Beach House on Anna Maria Island.",
+        url: "/pool",
+        type: "website",
+        images: [
+          {
+            url: "/Front.webp",
+            width: 1200,
+            height: 630,
+            alt: "Sandbox Beach House",
+          },
+        ],
+      },
     };
   }
 
   return {
     title: page.metaTitle,
     description: page.metaDescription,
+    openGraph: {
+      title: page.metaTitle,
+      description: page.metaDescription,
+      url: `/pool/${page.slug}`,
+      type: "article",
+      images: [
+        {
+          url: "/Front.webp",
+          width: 1200,
+          height: 630,
+          alt: "Sandbox Beach House",
+        },
+      ],
+    },
   };
 }
 

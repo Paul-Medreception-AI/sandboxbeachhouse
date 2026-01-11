@@ -5,6 +5,21 @@ export const metadata = {
   title: "Anna Maria Island Location Guides | Sandbox Beach House",
   description:
     "Explore Anna Maria Island, Bradenton Beach, Holmes Beach, and nearby coastal spots. Find the best beach areas for your Sandbox Beach House stay.",
+  openGraph: {
+    title: "Anna Maria Island Location Guides | Sandbox Beach House",
+    description:
+      "Explore Anna Maria Island, Bradenton Beach, Holmes Beach, and nearby coastal spots. Find the best beach areas for your Sandbox Beach House stay.",
+    url: "/locations",
+    type: "website",
+    images: [
+      {
+        url: "/Front.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sandbox Beach House",
+      },
+    ],
+  },
 };
 
 export default function LocationsIndexPage() {

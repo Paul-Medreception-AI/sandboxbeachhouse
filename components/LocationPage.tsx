@@ -73,9 +73,25 @@ function getLearnMoreLink(location: LocationData) {
 export function getLocationMetadata(slug: string): Metadata {
   const location = getLocation(slug);
   if (!location) return {};
+  const title = `${brand.h1Prefix} ${location.name} | ${brand.name}`;
+  const description = `Pet-friendly stays near ${location.name}. ${location.whyLove} Check availability at ${brand.name}.`;
   return {
-    title: `${brand.h1Prefix} ${location.name} | ${brand.name}`,
-    description: `Pet-friendly stays near ${location.name}. ${location.whyLove} Check availability at ${brand.name}.`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `/locations/${location.slug}`,
+      type: "article",
+      images: [
+        {
+          url: "/Front.webp",
+          width: 1200,
+          height: 630,
+          alt: "Sandbox Beach House",
+        },
+      ],
+    },
   };
 }
 

@@ -8,6 +8,21 @@ export const metadata: Metadata = {
   title: "Pet-Friendly Beach House on Anna Maria Island | Sandbox Beach House",
   description:
     "Explore pet-friendly travel guides for Anna Maria Island and Bradenton Beach. Sandbox Beach House welcomes small dogs 35 lbs or less.",
+  openGraph: {
+    title: "Pet-Friendly Beach House on Anna Maria Island | Sandbox Beach House",
+    description:
+      "Explore pet-friendly travel guides for Anna Maria Island and Bradenton Beach. Sandbox Beach House welcomes small dogs 35 lbs or less.",
+    url: "/pet-friendly",
+    type: "website",
+    images: [
+      {
+        url: "/Front.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sandbox Beach House",
+      },
+    ],
+  },
 };
 
 export default function PetFriendlyHubPage() {

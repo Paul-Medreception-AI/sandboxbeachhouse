@@ -11,6 +11,20 @@ export function getPetFriendlyMetadata(slug: string): Metadata {
   return {
     title: page.title,
     description: page.description,
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      url: `/pet-friendly/${page.slug}`,
+      type: "article",
+      images: [
+        {
+          url: "/Front.webp",
+          width: 1200,
+          height: 630,
+          alt: "Sandbox Beach House",
+        },
+      ],
+    },
   };
 }
 

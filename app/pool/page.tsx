@@ -39,6 +39,21 @@ export const metadata: Metadata = {
   title: "Pool & Outdoor Living Rentals | Sandbox Beach House",
   description:
     "Explore pool and outdoor-living highlights at Sandbox Beach House on Anna Maria Island—heated pool time, family-friendly comfort, and relaxed beach-house vibes.",
+  openGraph: {
+    title: "Pool & Outdoor Living Rentals | Sandbox Beach House",
+    description:
+      "Explore pool and outdoor-living highlights at Sandbox Beach House on Anna Maria Island—heated pool time, family-friendly comfort, and relaxed beach-house vibes.",
+    url: "/pool",
+    type: "website",
+    images: [
+      {
+        url: "/Front.webp",
+        width: 1200,
+        height: 630,
+        alt: "Sandbox Beach House",
+      },
+    ],
+  },
 };
 
 export default function PoolIndexPage() {
