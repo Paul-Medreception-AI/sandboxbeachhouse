@@ -1,3 +1,6 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
+
 export const metadata = {
   title: "FAQ | Sandbox Beach House",
   description:
@@ -23,7 +26,13 @@ export default function FAQPage() {
 
           <FAQ
             q="How do I check availability?"
-            a="The fastest way to check real-time availability is through our VRBO calendar. You may also contact us directly with your preferred dates."
+            a={
+              <span>
+                Check availability on our <Link href="/availability" className="font-semibold hover:underline">availability page</Link>. The
+                fastest way to confirm real-time availability is through our VRBO calendar. You may also contact us
+                directly with your preferred dates.
+              </span>
+            }
           />
 
           <FAQ
@@ -49,12 +58,12 @@ export default function FAQPage() {
           />
 
           <div className="mt-14">
-            <a
+            <Link
               href="/availability"
               className="inline-block bg-black text-white px-8 py-4 rounded-md font-semibold hover:bg-gray-800"
             >
               Check Availability
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -62,7 +71,7 @@ export default function FAQPage() {
   );
 }
 
-function FAQ({ q, a }: { q: string; a: string }) {
+function FAQ({ q, a }: { q: string; a: ReactNode }) {
   return (
     <div className="mb-8">
       <h2 className="text-xl font-semibold mb-2">{q}</h2>

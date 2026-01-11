@@ -22,8 +22,8 @@ export default function AvailabilityPage() {
             <div>
               <h2 className="text-2xl font-semibold mb-2">How to Check Availability</h2>
               <p>
-                The fastest way to see available dates is through our VRBO
-                calendar, which reflects real-time availability.
+                Check availability on this page using the calendar below. The fastest way to confirm real-time
+                availability is through our VRBO calendar. You may also contact us directly with your preferred dates.
               </p>
             </div>
 

@@ -5,7 +5,7 @@ import type { AnchorHTMLAttributes, MouseEvent } from "react";
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 

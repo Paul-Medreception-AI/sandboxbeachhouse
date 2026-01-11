@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Holmes Beach Location | Sandbox Beach House",
@@ -64,19 +65,19 @@ export default function LocationPage() {
 
           {/* CTA */}
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
               href="/availability"
               className="rounded-md bg-black px-8 py-4 font-semibold text-white hover:bg-gray-800"
             >
               Check Availability
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/photos"
               className="rounded-md border border-black px-8 py-4 font-semibold hover:bg-black hover:text-white"
             >
               View Photos
-            </a>
+            </Link>
           </div>
         </div>
       </section>

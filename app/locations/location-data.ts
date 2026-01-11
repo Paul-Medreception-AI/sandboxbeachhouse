@@ -1,0 +1,283 @@
+export type LocationData = {
+  slug: string;
+  name: string;
+  whyLove: string;
+  bestFor: string;
+  highlights: {
+    beach: string;
+    restaurants: string;
+    walkability: string;
+    vibe: string;
+  };
+  access: string;
+  nearby: [string, string];
+};
+
+export const locations: LocationData[] = [
+  {
+    slug: "anna-maria-island",
+    name: "Anna Maria Island",
+    whyLove: "Anna Maria Island blends sugar-sand beaches with pastel cottages and a small-town rhythm that feels unhurried.",
+    bestFor: "travelers who want easy beach days, local dining, and a low-key island pace.",
+    highlights: {
+      beach: "Wide Gulf beaches with soft white sand and calm surf.",
+      restaurants: "Casual seafood spots, ice cream stops, and waterfront patios.",
+      walkability: "Bikeable neighborhoods plus the free island trolley.",
+      vibe: "Old-Florida, easygoing, family-friendly.",
+    },
+    access: "an easy ride on the free island trolley",
+    nearby: ["holmes-beach", "bradenton-beach"],
+  },
+  {
+    slug: "bradenton-beach",
+    name: "Bradenton Beach",
+    whyLove: "Bradenton Beach mixes classic Gulf views with a walkable waterfront town feel.",
+    bestFor: "families and friends who want beach time plus dining and sunset strolls.",
+    highlights: {
+      beach: "Gulf shoreline with gentle waves and long sunset views.",
+      restaurants: "Bridge Street dining, seafood, and grab-and-go snacks.",
+      walkability: "Strong walkability around Bridge Street and the pier.",
+      vibe: "Lively but relaxed, with a fun coastal buzz.",
+    },
+    access: "a quick ride down Gulf Drive",
+    nearby: ["bridge-street", "coquina-beach"],
+  },
+  {
+    slug: "holmes-beach",
+    name: "Holmes Beach",
+    whyLove: "Holmes Beach sits in the heart of the island, balancing quiet neighborhoods with easy access to everything.",
+    bestFor: "travelers who want a central home base with a calm beach feel.",
+    highlights: {
+      beach: "Clean, uncrowded Gulf beach with soft sand.",
+      restaurants: "Local cafes, casual bites, and family-friendly dining.",
+      walkability: "Easy bike rides and trolley stops nearby.",
+      vibe: "Calm, residential, and family-focused.",
+    },
+    access: "a short bike ride or trolley hop",
+    nearby: ["anna-maria-island", "manatee-public-beach"],
+  },
+  {
+    slug: "cortez",
+    name: "Cortez",
+    whyLove: "Cortez is an old Florida fishing village with working docks and authentic local flavor.",
+    bestFor: "seafood lovers and travelers who enjoy a slower, coastal pace.",
+    highlights: {
+      beach: "Minutes to island beaches, with bayfront views nearby.",
+      restaurants: "Dockside seafood markets and laid-back eateries.",
+      walkability: "Small village pockets that are easy to stroll.",
+      vibe: "Historic, salty, and unpolished in the best way.",
+    },
+    access: "a short drive over the bridge",
+    nearby: ["cortez-fishing-village", "bradenton"],
+  },
+  {
+    slug: "longboat-key",
+    name: "Longboat Key",
+    whyLove: "Longboat Key offers a quieter, upscale stretch of coast with long, open beaches.",
+    bestFor: "couples and families seeking calm water and a refined feel.",
+    highlights: {
+      beach: "Long, quiet Gulf beach with soft sand.",
+      restaurants: "Waterfront dining and refined coastal kitchens.",
+      walkability: "Mostly driveable, with scenic bike lanes.",
+      vibe: "Quiet, polished, and serene.",
+    },
+    access: "an easy southbound drive along the coast",
+    nearby: ["sarasota-bay", "coquina-beach"],
+  },
+  {
+    slug: "coquina-beach",
+    name: "Coquina Beach",
+    whyLove: "Coquina Beach is known for wide sands, shaded picnic areas, and a natural feel.",
+    bestFor: "beach days with space to spread out and unwind.",
+    highlights: {
+      beach: "Wide beach with soft sand and sea grape shade.",
+      restaurants: "Seasonal beach snacks and nearby cafes.",
+      walkability: "Paved paths make it easy to explore.",
+      vibe: "Relaxed, breezy, and nature-forward.",
+    },
+    access: "a short ride down Gulf Drive",
+    nearby: ["ami-south-end", "bradenton-beach"],
+  },
+  {
+    slug: "manatee-public-beach",
+    name: "Manatee Public Beach",
+    whyLove: "Manatee Public Beach is a classic, amenity-rich beach with room for families.",
+    bestFor: "visitors who want facilities, lifeguards, and easy parking.",
+    highlights: {
+      beach: "Family-friendly beach with soft sand and amenities.",
+      restaurants: "Beachfront cafe and nearby casual dining.",
+      walkability: "Easy to reach from central Holmes Beach.",
+      vibe: "Active, friendly, and family-focused.",
+    },
+    access: "a quick ride along Gulf Drive",
+    nearby: ["holmes-beach", "gulf-drive-corridor"],
+  },
+  {
+    slug: "bridge-street",
+    name: "Bridge Street",
+    whyLove: "Bridge Street is the island's lively hub for dining, shops, and evening strolls.",
+    bestFor: "travelers who like walkable nightlife and waterfront views.",
+    highlights: {
+      beach: "Steps from the Gulf with quick beach access.",
+      restaurants: "Seafood, cocktails, and sunset-friendly patios.",
+      walkability: "One of the most walkable districts on AMI.",
+      vibe: "Lively, social, and fun.",
+    },
+    access: "a short trolley hop to the island's south end",
+    nearby: ["bradenton-beach", "coquina-beach"],
+  },
+  {
+    slug: "anna-maria-city",
+    name: "Anna Maria City",
+    whyLove: "Anna Maria City is charming and historic, with quiet streets and boutique shops.",
+    bestFor: "guests who prefer a laid-back north-end feel.",
+    highlights: {
+      beach: "Quiet Gulf shoreline with peaceful mornings.",
+      restaurants: "Local cafes, bakeries, and ice cream counters.",
+      walkability: "Pine Avenue and the city pier area are strollable.",
+      vibe: "Quaint, charming, and peaceful.",
+    },
+    access: "an easy ride to the north end",
+    nearby: ["pine-avenue", "bean-point"],
+  },
+  {
+    slug: "ami-north-end",
+    name: "AMI North End",
+    whyLove: "The AMI North End is known for calm streets, sunset views, and wide beaches.",
+    bestFor: "visitors seeking quiet mornings and scenic shoreline walks.",
+    highlights: {
+      beach: "Wide, uncrowded sands with glowing sunsets.",
+      restaurants: "Small local eateries and low-key dining.",
+      walkability: "Bike-friendly with light traffic.",
+      vibe: "Peaceful, residential, and scenic.",
+    },
+    access: "a simple ride up island",
+    nearby: ["bean-point", "anna-maria-city"],
+  },
+  {
+    slug: "ami-south-end",
+    name: "AMI South End",
+    whyLove: "The AMI South End blends Bradenton Beach energy with easy access to Coquina.",
+    bestFor: "travelers who like a mix of beach time and dining.",
+    highlights: {
+      beach: "Easy Gulf access with long shoreline.",
+      restaurants: "Bridge Street and waterfront dining nearby.",
+      walkability: "Good walkability near Bridge Street.",
+      vibe: "Upbeat, coastal, and convenient.",
+    },
+    access: "a quick ride toward Bradenton Beach",
+    nearby: ["coquina-beach", "bridge-street"],
+  },
+  {
+    slug: "bean-point",
+    name: "Bean Point",
+    whyLove: "Bean Point is a quiet, postcard-pretty spot where the Gulf meets the bay.",
+    bestFor: "sunset chasers and guests who want privacy.",
+    highlights: {
+      beach: "Secluded shoreline with wide views.",
+      restaurants: "Short drive to north-end cafes.",
+      walkability: "Neighborhood strolls with little traffic.",
+      vibe: "Serene, scenic, and romantic.",
+    },
+    access: "a short trip to the island's tip",
+    nearby: ["ami-north-end", "anna-maria-city"],
+  },
+  {
+    slug: "pine-avenue",
+    name: "Pine Avenue",
+    whyLove: "Pine Avenue is the island's charming main street with shops, cafes, and galleries.",
+    bestFor: "travelers who enjoy walkable shopping and morning coffee runs.",
+    highlights: {
+      beach: "Quick access to nearby Gulf beaches.",
+      restaurants: "Coffee shops, casual lunches, and sweet treats.",
+      walkability: "Very walkable with local boutiques.",
+      vibe: "Charming, artsy, and relaxed.",
+    },
+    access: "an easy ride to the north end",
+    nearby: ["anna-maria-city", "bean-point"],
+  },
+  {
+    slug: "cortez-fishing-village",
+    name: "Cortez Fishing Village",
+    whyLove: "Cortez Fishing Village delivers authentic Old Florida character and fresh seafood.",
+    bestFor: "foodies and travelers curious about local history.",
+    highlights: {
+      beach: "Close to island beaches with bayfront views.",
+      restaurants: "Historic seafood shacks and dockside eats.",
+      walkability: "Compact village core with easy strolls.",
+      vibe: "Historic, coastal, and authentic.",
+    },
+    access: "a short drive over the bridge",
+    nearby: ["cortez", "bradenton"],
+  },
+  {
+    slug: "sarasota-bay",
+    name: "Sarasota Bay",
+    whyLove: "Sarasota Bay offers bayfront scenery, boating, and breezy waterfront drives.",
+    bestFor: "guests who want a mix of water views and coastal culture.",
+    highlights: {
+      beach: "Bayfront views with Gulf beaches nearby.",
+      restaurants: "Marina dining and waterfront patios.",
+      walkability: "Best explored by car with scenic stops.",
+      vibe: "Coastal, polished, and breezy.",
+    },
+    access: "a scenic drive along the bay",
+    nearby: ["longboat-key", "bradenton"],
+  },
+  {
+    slug: "bradenton",
+    name: "Bradenton",
+    whyLove: "Bradenton combines a riverfront downtown with easy access to the islands.",
+    bestFor: "travelers who like dining, arts, and quick beach trips.",
+    highlights: {
+      beach: "Short drive to AMI beaches.",
+      restaurants: "Riverwalk dining, breweries, and casual spots.",
+      walkability: "Downtown is walkable once you arrive.",
+      vibe: "Local, lively, and convenient.",
+    },
+    access: "a short drive inland",
+    nearby: ["west-bradenton", "cortez"],
+  },
+  {
+    slug: "west-bradenton",
+    name: "West Bradenton",
+    whyLove: "West Bradenton is a quiet residential area close to the island bridges.",
+    bestFor: "guests who want convenience and a local feel.",
+    highlights: {
+      beach: "Quick drive to Gulf beaches.",
+      restaurants: "Neighborhood eats and local favorites.",
+      walkability: "Driveable, with pockets of walkable areas.",
+      vibe: "Low-key, residential, and practical.",
+    },
+    access: "a quick drive over the bridge",
+    nearby: ["bradenton", "cortez"],
+  },
+  {
+    slug: "palmetto",
+    name: "Palmetto",
+    whyLove: "Palmetto is a small riverfront town with parks and local charm.",
+    bestFor: "travelers who want a relaxed base beyond the beach crowds.",
+    highlights: {
+      beach: "Easy drive to the island and Gulf beaches.",
+      restaurants: "Local cafes and riverfront spots.",
+      walkability: "Historic areas are easy to explore on foot.",
+      vibe: "Small-town, quiet, and friendly.",
+    },
+    access: "a short drive north along the river",
+    nearby: ["bradenton", "west-bradenton"],
+  },
+  {
+    slug: "gulf-drive-corridor",
+    name: "Gulf Drive Corridor",
+    whyLove: "Gulf Drive is the scenic ribbon that runs along Anna Maria Island's Gulf side.",
+    bestFor: "guests who want easy beach access and a classic island cruise.",
+    highlights: {
+      beach: "Multiple public beach access points along the drive.",
+      restaurants: "Beach bars, cafes, and Gulf-front dining.",
+      walkability: "Bike lanes and sidewalks make it easy to explore.",
+      vibe: "Classic beach town energy.",
+    },
+    access: "a bikeable ride along the island",
+    nearby: ["holmes-beach", "coquina-beach"],
+  },
+];

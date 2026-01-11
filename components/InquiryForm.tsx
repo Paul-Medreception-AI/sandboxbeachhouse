@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -82,7 +82,7 @@ export default function InquiryForm({ action, prefillDates }: InquiryFormProps) 
       {submitted && (
         <p className="mt-2 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-600">
           <span aria-hidden="true">✔</span>
-          Submission received! We'll reply shortly.
+          Submission received! We&apos;ll reply shortly.
         </p>
       )}
     </form>

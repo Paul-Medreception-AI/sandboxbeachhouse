@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./Nav";
 import MobileCTA from "@/components/MobileCTA";
+import Footer from "@/components/Footer";
+import PerfMeasureGuard from "@/components/PerfMeasureGuard";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -40,6 +42,10 @@ export const metadata: Metadata = {
   title: "The Sandbox Cottage — Steps to the Beach",
   description:
     "Private beach house steps from the Gulf with a pool. Walkable, unique, and highly rated. Book Sandbox Beach House direct or check availability.",
+  icons: {
+    icon: [{ url: "/SandboxLogo.png", type: "image/png" }],
+    apple: [{ url: "/SandboxLogo.png", type: "image/png" }],
+  },
   openGraph: {
     title: "The Sandbox Cottage — Steps to the Beach",
     description: "A private Holmes Beach house with pool, steps from the Gulf.",
@@ -98,8 +104,10 @@ gtag('config', 'G-JC9Z8Z22CE');`,
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <PerfMeasureGuard />
         <Nav />
         <div className="pt-16 pb-16 md:pb-0">{children}</div>
+        <Footer />
         <MobileCTA />
       </body>
     </html>
