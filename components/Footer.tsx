@@ -42,23 +42,28 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Explore</h3>
             <ul className="mt-4 space-y-2 text-sm text-slate-700">
               <li>
+                <Link className="hover:text-slate-900 hover:underline" href="/walkable">
+                  Walkable stays
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-slate-900 hover:underline" href="/pool">
+                  Pool pages
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-slate-900 hover:underline" href="/pet-friendly">
+                  Pet-friendly stays
+                </Link>
+              </li>
+              <li>
                 <Link className="hover:text-slate-900 hover:underline" href="/locations/">
-                  All location guides
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-slate-900 hover:underline" href="/location">
-                  Walk-to-beach location
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-slate-900 hover:underline" href="/photos">
-                  Pool and family spaces
+                  Location guides
                 </Link>
               </li>
               <li>
                 <Link className="hover:text-slate-900 hover:underline" href="/faq">
-                  Pet policy and FAQs
+                  FAQs
                 </Link>
               </li>
             </ul>

@@ -86,93 +86,171 @@ export function LocationPage({ slug }: { slug: string }) {
   const nearby = getNearby(location);
 
   return (
-    <main className="bg-white text-gray-900">
-      <section className="py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <h1 className="mb-6 text-4xl font-bold">
+    <main className="bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
+      <section className="relative overflow-hidden border-b border-sky-100 bg-gradient-to-br from-sky-50 via-white to-emerald-50">
+        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sky-200/60 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-emerald-200/60 blur-3xl" />
+
+        <div className="mx-auto max-w-5xl px-6 py-16">
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="inline-flex rounded-full bg-[#103780]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#103780]">
+              Location guide
+            </p>
+            <p className="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-900">
+              Pet-friendly
+            </p>
+            <p className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-900">
+              Walkable beach time
+            </p>
+          </div>
+
+          <h1 className="mt-5 text-4xl font-bold text-slate-900 md:text-5xl">
             {brand.h1Prefix} {location.name}
           </h1>
 
-          <p className="mb-10 max-w-3xl text-lg">{buildIntro(location)}</p>
+          <p className="mt-6 max-w-3xl text-lg text-slate-700">{buildIntro(location)}</p>
 
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link
+              href="/availability"
+              className="rounded-full bg-[#103780] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0b2b63]"
+            >
+              Check Availability
+            </Link>
+            <Link
+              href="/photos"
+              className="rounded-full border border-slate-300 bg-white/70 px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-white"
+            >
+              Browse Photos
+            </Link>
+            <Link
+              href="/pool"
+              className="rounded-full border border-slate-300 bg-white/70 px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-white"
+            >
+              Pool Pages
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-5xl px-6">
           <section className="mb-12">
-            <h2 className="mb-4 text-2xl font-semibold">Local highlights</h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-600">Beach type</p>
-                <p className="mt-2 text-slate-700">{location.highlights.beach}</p>
+            <h2 className="mb-4 text-2xl font-semibold text-slate-900">Local highlights</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300">
+                <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-sky-200/50 blur-3xl" />
+                <div className="relative">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Beach type</p>
+                  <p className="mt-3 text-slate-700">{location.highlights.beach}</p>
+                </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-600">Restaurants</p>
-                <p className="mt-2 text-slate-700">{location.highlights.restaurants}</p>
+              <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300">
+                <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-emerald-200/50 blur-3xl" />
+                <div className="relative">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Restaurants</p>
+                  <p className="mt-3 text-slate-700">{location.highlights.restaurants}</p>
+                </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-600">Walkability</p>
-                <p className="mt-2 text-slate-700">{location.highlights.walkability}</p>
+              <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300">
+                <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-amber-200/50 blur-3xl" />
+                <div className="relative">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Walkability</p>
+                  <p className="mt-3 text-slate-700">{location.highlights.walkability}</p>
+                </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-600">Vibe</p>
-                <p className="mt-2 text-slate-700">{location.highlights.vibe}</p>
+              <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300">
+                <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-indigo-200/50 blur-3xl" />
+                <div className="relative">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Vibe</p>
+                  <p className="mt-3 text-slate-700">{location.highlights.vibe}</p>
+                </div>
               </div>
             </div>
-            <div className="mt-6">
+
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
-                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 hover:underline"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
                 href={buildMapsUrl(location)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open {location.name} in Google Maps
+                Open in Google Maps
+                <span aria-hidden>↗</span>
               </a>
-            </div>
-            {getLearnMoreLink(location) ? (
-              <div className="mt-2">
+              {getLearnMoreLink(location) ? (
                 <a
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 hover:underline"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
                   href={getLearnMoreLink(location)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Learn more about {location.name}
+                  Learn more
+                  <span aria-hidden>↗</span>
                 </a>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </section>
 
           <section className="mb-12">
-            <h2 className="mb-4 text-2xl font-semibold">Stay at {brand.name} here</h2>
-            <p className="max-w-3xl text-lg text-slate-700">{buildStayCopy(location)}</p>
+            <h2 className="mb-4 text-2xl font-semibold text-slate-900">Stay at {brand.name} here</h2>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="max-w-3xl text-lg text-slate-700">{buildStayCopy(location)}</p>
+            </div>
           </section>
 
           <section className="mb-12">
-            <h2 className="mb-4 text-2xl font-semibold">Explore nearby</h2>
-            <p className="max-w-3xl text-lg text-slate-700">
-              Also explore{" "}
-              {nearby.map((spot, index) => (
-                <span key={spot.slug}>
-                  <Link className="font-semibold text-slate-900 hover:underline" href={`/locations/${spot.slug}/`}>
-                    {spot.name}
-                  </Link>
-                  {index === nearby.length - 1 ? "." : ", "}
-                </span>
-              ))}
-              {" "}See our{" "}
-              <Link className="font-semibold text-slate-900 hover:underline" href="/location">
-                walk-to-beach location
-              </Link>
-              , review the{" "}
-              <Link className="font-semibold text-slate-900 hover:underline" href="/faq">
-                {brand.policyLabel}
-              </Link>
-              , and peek at{" "}
-              <Link className="font-semibold text-slate-900 hover:underline" href="/photos">
-                pool and family spaces
-              </Link>
-              .
+            <h2 className="mb-4 text-2xl font-semibold text-slate-900">Explore nearby</h2>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="max-w-3xl text-lg text-slate-700">
+                Also explore{" "}
+                {nearby.map((spot, index) => (
+                  <span key={spot.slug}>
+                    <Link className="font-semibold text-[#103780] hover:underline" href={`/locations/${spot.slug}/`}>
+                      {spot.name}
+                    </Link>
+                    {index === nearby.length - 1 ? "." : ", "}
+                  </span>
+                ))}
+                {" "}See our{" "}
+                <Link className="font-semibold text-[#103780] hover:underline" href="/location">
+                  walk-to-beach location
+                </Link>
+                , review the{" "}
+                <Link className="font-semibold text-[#103780] hover:underline" href="/faq">
+                  {brand.policyLabel}
+                </Link>
+                , and peek at{" "}
+                <Link className="font-semibold text-[#103780] hover:underline" href="/photos">
+                  pool and family spaces
+                </Link>
+                .
+              </p>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-sky-900 p-8 text-white shadow-sm">
+            <h2 className="text-2xl font-bold">Ready to plan your {location.name} week?</h2>
+            <p className="mt-3 max-w-2xl text-white/85">
+              Confirm your dates, then build your beach + pool rhythm around the part of Anna Maria Island you like most.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/availability"
+                className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+              >
+                Check Availability
+              </Link>
+              <Link
+                href="/pet-friendly"
+                className="rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
+              >
+                Pet-Friendly Guides
+              </Link>
+            </div>
           </section>
 
-          <p className="text-lg font-semibold text-slate-900">
+          <p className="mt-10 text-lg font-semibold text-slate-900">
             Check availability at {brand.name} in {location.name}.
           </p>
         </div>
