@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   description:
     "Private beach house steps from the Gulf with a pool. Walkable, unique, and highly rated. Book Sandbox Beach House direct or check availability.",
   icons: {
-    icon: [{ url: "/SandboxLogo.png", type: "image/png" }],
-    apple: [{ url: "/SandboxLogo.png", type: "image/png" }],
+    icon: [{ url: "/FaviconSandbox.png", type: "image/png" }],
+    apple: [{ url: "/FaviconSandbox.png", type: "image/png" }],
   },
   openGraph: {
     title: "The Sandbox Cottage — Steps to the Beach",
