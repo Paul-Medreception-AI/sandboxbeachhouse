@@ -48,17 +48,18 @@ export const dynamicParams = false;
 export const dynamic = "force-static";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
   return POOL_PAGES.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const page = POOL_PAGES.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const page = POOL_PAGES.find((p) => p.slug === slug);
 
   if (!page) {
     return {
@@ -103,8 +104,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function PoolTopicPage({ params }: PageProps) {
-  const page = POOL_PAGES.find((p) => p.slug === params.slug);
+export default async function PoolTopicPage({ params }: PageProps) {
+  const { slug } = await params;
+  const page = POOL_PAGES.find((p) => p.slug === slug);
 
   if (!page) {
     notFound();
