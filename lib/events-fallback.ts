@@ -1,0 +1,38 @@
+import type { RawEvent } from "./events-types";
+
+export const fallbackEvents: RawEvent[] = [
+  {
+    id: "fallback-1",
+    title: "Anna Maria Island Farmers Market",
+    summary: "Weekly farmers market featuring local produce, crafts, and live music.",
+    description: "Join us every Saturday morning for fresh local produce, handmade crafts, and live entertainment at the Anna Maria Island Farmers Market.",
+    startDate: "2026-02-07T08:00:00",
+    endDate: "2026-02-07T12:00:00",
+    timezone: "America/New_York",
+    locationName: "Bridge Street",
+    address: "Bridge Street, Bradenton Beach, FL",
+    city: "Bradenton Beach",
+    state: "FL",
+    url: "https://www.annamariaislandchamber.org/events/",
+    categories: ["market"],
+    tags: ["weekly", "local"],
+    source: "AMI Chamber",
+  },
+  {
+    id: "fallback-2",
+    title: "Sunset Concert Series",
+    summary: "Live acoustic music performances at sunset on the beach.",
+    description: "Enjoy live acoustic performances by local musicians as the sun sets over the Gulf of Mexico. Bring your beach chair and relax.",
+    startDate: "2026-02-14T18:00:00",
+    endDate: "2026-02-14T20:00:00",
+    timezone: "America/New_York",
+    locationName: "Coquina Beach",
+    address: "Coquina Beach, Anna Maria Island, FL",
+    city: "Anna Maria",
+    state: "FL",
+    url: "https://www.bradentongulfislands.com/events/",
+    categories: ["music"],
+    tags: ["live music", "outdoor"],
+    source: "Bradenton Gulf Islands",
+  },
+];
