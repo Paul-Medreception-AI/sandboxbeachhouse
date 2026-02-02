@@ -139,7 +139,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
               <ul className="mt-4 grid gap-3 text-lg text-slate-700 md:grid-cols-2">
                 {page.highlights.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1 text-amber-700">\u2714</span>
+                    <span className="mt-1 text-amber-700">{"\u2714"}</span>
                     <span>{item}</span>
                   </li>
                 ))}
