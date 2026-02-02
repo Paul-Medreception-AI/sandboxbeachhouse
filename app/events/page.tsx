@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getUpcomingEvents, eventCategories } from "@/lib/events";
+import RefreshEventsButton from "@/components/RefreshEventsButton";
 
 export const metadata: Metadata = {
   title: "Events & Festivals on Anna Maria Island | Sandbox Beach House",
@@ -68,7 +69,7 @@ export default async function EventsIndexPage() {
             Island's calendar stays full with beach-town charm and seasonal happenings.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Link
               href="/availability"
               className="rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-sky-900/10 transition hover:bg-sky-800"
@@ -81,6 +82,7 @@ export default async function EventsIndexPage() {
             >
               Local Guides
             </Link>
+            <RefreshEventsButton />
           </div>
         </div>
       </section>
