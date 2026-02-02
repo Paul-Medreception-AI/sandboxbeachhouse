@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { sendInquiry } from "@/app/actions/sendInquiry";
 import AvailabilityCalendar from "@/components/AvailabilityCalendar";
@@ -76,6 +76,8 @@ function isValidIsoDate(value: string) {
 export default function AvailabilityPlanner({ action = sendInquiry }: AvailabilityPlannerProps) {
   const [selectedStartIso, setSelectedStartIso] = useState<string | null>(null);
   const [selectedEndIso, setSelectedEndIso] = useState<string | null>(null);
+  const mobileDatesRef = useRef<HTMLDivElement | null>(null);
+  const lastAutoScrollKey = useRef<string | null>(null);
 
   const prefillDates = useMemo(() => {
     if (!selectedStartIso || !selectedEndIso) return "";
@@ -95,6 +97,16 @@ export default function AvailabilityPlanner({ action = sendInquiry }: Availabili
   const nights = useMemo(() => {
     if (!selectedStartIso || !selectedEndIso) return 0;
     return nightsBetween(selectedStartIso, selectedEndIso);
+  }, [selectedStartIso, selectedEndIso]);
+
+  useEffect(() => {
+    if (!selectedStartIso || !selectedEndIso) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
+    const key = `${selectedStartIso}-${selectedEndIso}`;
+    if (lastAutoScrollKey.current === key) return;
+    lastAutoScrollKey.current = key;
+    mobileDatesRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [selectedStartIso, selectedEndIso]);
 
   function setStart(next: string) {
@@ -143,7 +155,7 @@ export default function AvailabilityPlanner({ action = sendInquiry }: Availabili
           />
 
           <div className="mt-6 lg:hidden" id="inquiry">
-            <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div ref={mobileDatesRef} className="scroll-mt-24 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
               <h3 className="text-lg font-semibold text-slate-900">Your dates</h3>
               <p className="mt-1 text-sm text-slate-600">Pick dates on the calendar or enter them below.</p>
 

@@ -5,7 +5,6 @@ import Nav from "./Nav";
 import MobileCTA from "@/components/MobileCTA";
 import Footer from "@/components/Footer";
 import PerfMeasureGuard from "@/components/PerfMeasureGuard";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -107,8 +106,7 @@ gtag('config', 'G-JC9Z8Z22CE');`,
         </noscript>
         <PerfMeasureGuard />
         <Nav />
-        <div className="pt-16 pb-16 md:pb-0">
-          <Breadcrumbs />
+        <div className="pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-0">
           {children}
         </div>
         <Footer />

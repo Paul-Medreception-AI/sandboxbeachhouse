@@ -8,8 +8,8 @@ import TrackedLink from "@/components/TrackedLink";
 
 export default function HomePage() {
   return (
-    <main className="bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
-      <section className="relative h-[70vh] min-h-[520px]">
+    <main className="overflow-x-hidden bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
+      <section className="relative min-h-[600px] sm:h-[70vh] sm:min-h-[520px]">
         <div className="pointer-events-none absolute -left-24 -top-24 z-10 h-72 w-72 rounded-full bg-sky-300/40 blur-3xl" />
         <div className="pointer-events-none absolute -right-24 -bottom-24 z-10 h-72 w-72 rounded-full bg-emerald-300/30 blur-3xl" />
         <Image
@@ -21,45 +21,44 @@ export default function HomePage() {
           className="object-cover brightness-90"
         />
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
-        <div className="absolute inset-0 z-20 flex items-center">
-          <div className="mx-auto w-full max-w-5xl px-6 text-white">
-            <div className="mb-4 flex flex-wrap items-center gap-2">
-              <p className="inline-flex rounded-full bg-black/40 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-lg">
+        <div className="absolute inset-0 z-20 flex items-center py-8">
+          <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 text-white">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <p className="inline-flex rounded-full bg-black/40 px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wider sm:tracking-[0.3em] text-white shadow-lg">
                 Holmes Beach · Anna Maria Island
               </p>
-              <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+              <p className="inline-flex rounded-full bg-white/15 px-2 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-white">
                 Private pool
               </p>
-              <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+              <p className="inline-flex rounded-full bg-white/15 px-2 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-white">
                 Dogs ≤ 35 lbs
               </p>
             </div>
-            <h1 className="mb-4 text-4xl font-bold drop-shadow-lg md:text-5xl">
+            <h1 className="mb-3 text-3xl sm:text-4xl font-bold drop-shadow-lg md:text-5xl">
               The Sandbox Cottage — Steps to the Beach
             </h1>
-            <p className="mb-6 max-w-2xl text-lg drop-shadow md:text-xl">
+            <p className="mb-4 max-w-2xl text-base sm:text-lg drop-shadow md:text-xl">
               The Sandbox is a one-of-a-kind 2BR/1.5BA Holmes Beach retreat with a private pool, unique backyard, and
               unbeatable walk-to-beach location. Sleeps 6 with a queen sleeper sofa.
             </p>
-            <div className="flex gap-3 justify-center flex-wrap">
-              <TrackedLink
-                href="https://www.vrbo.com/4984875ha"
-                eventLabel="VRBO Calendar"
-                className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg shadow-black/30 transition hover:bg-slate-100"
-              >
-                View VRBO Calendar
-              </TrackedLink>
+            <div className="flex gap-2 sm:gap-3 justify-center flex-wrap">
               <a
-                href="#availability"
-                className="rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/15"
+                href="/open-dates"
+                className="rounded-full bg-white px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-black shadow-lg shadow-black/30 transition hover:bg-slate-100"
               >
-                Book Direct &amp; Save
+                View Open Dates
               </a>
               <a
-                href="/pool"
-                className="rounded-full border border-white/60 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/15"
+                href="/availability"
+                className="rounded-full border border-white/60 bg-white/10 px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-white hover:bg-white/15"
               >
-                Pool Pages
+                Check Calendar
+              </a>
+              <a
+                href="#availability"
+                className="rounded-full border border-white/60 bg-white/10 px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white transition hover:border-white hover:bg-white/15"
+              >
+                Book Direct &amp; Save
               </a>
             </div>
           </div>
@@ -156,19 +155,25 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href="/open-dates"
+              className="rounded-full bg-[#103780] px-8 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0b2b63]"
+            >
+              Browse All Open Dates
+            </a>
+            <a
+              href="/open-dates/last-minute"
+              className="rounded-full border border-slate-300 bg-white px-8 py-4 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
+            >
+              Last-Minute Deals
+            </a>
             <TrackedLink
               href="https://www.vrbo.com/4984875ha"
               eventLabel="VRBO Availability"
-              className="rounded-full bg-[#103780] px-8 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0b2b63]"
-            >
-              View Available Dates on VRBO
-            </TrackedLink>
-            <a
-              href="#direct"
               className="rounded-full border border-slate-300 bg-white px-8 py-4 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
             >
-              Why book direct?
-            </a>
+              View on VRBO
+            </TrackedLink>
           </div>
         </div>
       </section>

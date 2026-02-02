@@ -20,7 +20,7 @@ export default function Breadcrumbs() {
   });
 
   return (
-    <nav aria-label="Breadcrumb" className="mx-auto max-w-6xl px-6 pt-6 text-sm text-slate-600">
+    <nav aria-label="Breadcrumb" className="mx-auto max-w-6xl px-6 py-6 text-sm text-slate-600">
       <ol className="flex flex-wrap items-center gap-2">
         <li>
           <Link href="/" className="font-semibold text-slate-700 hover:text-sky-900">
