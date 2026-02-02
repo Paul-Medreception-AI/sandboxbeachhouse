@@ -2,15 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getLateSummerPage, lateSummerPages } from "./data";
+import { getWhereToStayPage, whereToStayPages } from "./data";
 
 const ACCENTS = [
-  {
-    badgeClass: "bg-amber-100 text-amber-900",
-    blobClass: "bg-amber-200/70",
-    iconBgClass: "bg-amber-700",
-    ringClass: "hover:border-amber-200",
-  },
   {
     badgeClass: "bg-sky-100 text-sky-900",
     blobClass: "bg-sky-200/70",
@@ -22,6 +16,12 @@ const ACCENTS = [
     blobClass: "bg-emerald-200/70",
     iconBgClass: "bg-emerald-700",
     ringClass: "hover:border-emerald-200",
+  },
+  {
+    badgeClass: "bg-amber-100 text-amber-900",
+    blobClass: "bg-amber-200/70",
+    iconBgClass: "bg-amber-700",
+    ringClass: "hover:border-amber-200",
   },
   {
     badgeClass: "bg-rose-100 text-rose-900",
@@ -39,8 +39,8 @@ function slugToAccentIndex(slug: string) {
   return hash % ACCENTS.length;
 }
 
-export function getLateSummerMetadata(slug: string): Metadata {
-  const page = getLateSummerPage(slug);
+export function getWhereToStayMetadata(slug: string): Metadata {
+  const page = getWhereToStayPage(slug);
   if (!page) return {};
   return {
     title: page.title,
@@ -48,19 +48,19 @@ export function getLateSummerMetadata(slug: string): Metadata {
   };
 }
 
-export function getLateSummerSlugs() {
-  return lateSummerPages.map((page) => page.slug);
+export function getWhereToStaySlugs() {
+  return whereToStayPages.map((page) => page.slug);
 }
 
-export default function LateSummerTopic({ slug }: { slug: string }) {
-  const page = getLateSummerPage(slug);
+export default function WhereToStayTopic({ slug }: { slug: string }) {
+  const page = getWhereToStayPage(slug);
   if (!page) return notFound();
 
   const accent = ACCENTS[slugToAccentIndex(page.slug)];
 
   return (
-    <main className="bg-gradient-to-b from-amber-50 via-white to-white text-slate-900">
-      <section className="relative overflow-hidden border-b border-amber-100 bg-gradient-to-br from-amber-50 via-white to-sky-50">
+    <main className="bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
+      <section className="relative overflow-hidden border-b border-sky-100 bg-gradient-to-br from-sky-50 via-white to-emerald-50">
         <div className={`pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full blur-3xl ${accent.blobClass}`} />
         <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-slate-200/60 blur-3xl" />
 
@@ -71,8 +71,8 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
                 Home
               </Link>
               <span className="text-slate-300">/</span>
-              <Link href="/late-summer/" className="hover:text-slate-700">
-                Late Summer
+              <Link href="/where-to-stay/" className="hover:text-slate-700">
+                Where to stay
               </Link>
               <span className="text-slate-300">/</span>
               <span className="text-slate-500">{page.h1}</span>
@@ -81,7 +81,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <p className="inline-flex rounded-full bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500 ring-1 ring-slate-200">
-              July to September
+              Area guide
             </p>
             <p className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${accent.badgeClass}`}>
               {page.badge}
@@ -90,7 +90,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
 
           <div className="mt-6 flex items-start gap-4">
             <div className={`mt-1 grid h-12 w-12 place-items-center rounded-2xl text-white shadow-sm ${accent.iconBgClass}`}>
-              <span className="text-xl">☀️</span>
+              <span className="text-xl">{"\u2600\uFE0F"}</span>
             </div>
             <div>
               <h1 className="text-4xl font-bold text-slate-900 md:text-5xl">{page.h1}</h1>
@@ -105,7 +105,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href="/availability"
-              className="rounded-full bg-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-amber-900/10 transition hover:bg-amber-800"
+              className="rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-sky-900/10 transition hover:bg-sky-800"
             >
               Check Availability
             </Link>
@@ -130,7 +130,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
           <div className="grid gap-10">
             <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <h2 className="text-2xl font-semibold text-slate-900">Best for</h2>
-              <p className="mt-4 text-lg text-slate-700">{page.focus}</p>
+              <p className="mt-4 text-lg text-slate-700">{page.bestFor}</p>
             </section>
 
             <section className={`relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition ${accent.ringClass}`}>
@@ -139,7 +139,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
               <ul className="mt-4 grid gap-3 text-lg text-slate-700 md:grid-cols-2">
                 {page.highlights.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1 text-amber-700">{"\u2714"}</span>
+                    <span className="mt-1 text-sky-700">{"\u2714"}</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -162,7 +162,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-amber-200 hover:bg-amber-50"
+                    className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-sky-200 hover:bg-sky-50"
                   >
                     {link.label}
                   </Link>
@@ -170,7 +170,7 @@ export default function LateSummerTopic({ slug }: { slug: string }) {
               </div>
             </section>
 
-            <section className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-amber-900 p-8 text-white shadow-sm">
+            <section className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-sky-900 p-8 text-white shadow-sm">
               <p className="text-lg font-semibold">{page.cta}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link

@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { lateSummerGroups, lateSummerPages } from "./data";
+import { whereToStayGroups, whereToStayPages } from "./data";
 
 const ACCENTS = [
   {
-    badge: "July to September",
-    badgeClass: "bg-amber-100 text-amber-900",
-    blobClass: "bg-amber-300",
-    ringClass: "hover:border-amber-200",
-    iconBgClass: "bg-amber-700",
-  },
-  {
-    badge: "Beach planning",
+    badge: "Area guides",
     badgeClass: "bg-sky-100 text-sky-900",
     blobClass: "bg-sky-300",
     ringClass: "hover:border-sky-200",
     iconBgClass: "bg-sky-700",
   },
   {
-    badge: "Simple routines",
+    badge: "Traveler fit",
     badgeClass: "bg-emerald-100 text-emerald-900",
     blobClass: "bg-emerald-300",
     ringClass: "hover:border-emerald-200",
     iconBgClass: "bg-emerald-700",
   },
   {
-    badge: "Easy logistics",
+    badge: "Neighborhoods",
+    badgeClass: "bg-amber-100 text-amber-900",
+    blobClass: "bg-amber-300",
+    ringClass: "hover:border-amber-200",
+    iconBgClass: "bg-amber-700",
+  },
+  {
+    badge: "Logistics",
     badgeClass: "bg-rose-100 text-rose-900",
     blobClass: "bg-rose-300",
     ringClass: "hover:border-rose-200",
@@ -35,26 +35,25 @@ const ACCENTS = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "Late Summer on Anna Maria Island | Sandbox Beach House",
+  title: "Where to Stay on Anna Maria Island | Sandbox Beach House",
   description:
-    "July to September guides for Anna Maria Island: weather, activities, itineraries, food, and planning tips based in Holmes Beach.",
+    "Where to stay on Anna Maria Island: area comparisons, neighborhood spotlights, and tips for walkability, dining, and beach access.",
 };
 
 const orderedGroups = [
-  "Months",
-  "Timing",
-  "Weather and conditions",
-  "Activities",
-  "Food and treats",
-  "Planning and itineraries",
+  "Area comparisons",
+  "Best by traveler type",
+  "Neighborhood spotlights",
+  "Stay-near guides",
+  "Logistics and distance",
 ];
 
-export default function LateSummerHubPage() {
+export default function WhereToStayHubPage() {
   return (
-    <main className="bg-gradient-to-b from-amber-50 via-white to-white text-slate-900">
-      <section className="relative overflow-hidden border-b border-amber-100 bg-gradient-to-br from-amber-50 via-white to-sky-50">
-        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-amber-200/60 blur-3xl" />
-        <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-sky-200/60 blur-3xl" />
+    <main className="bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
+      <section className="relative overflow-hidden border-b border-sky-100 bg-gradient-to-br from-sky-50 via-white to-emerald-50">
+        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sky-200/60 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-emerald-200/60 blur-3xl" />
 
         <div className="mx-auto max-w-5xl px-6 py-16">
           <nav className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500" aria-label="Breadcrumb">
@@ -63,24 +62,23 @@ export default function LateSummerHubPage() {
                 Home
               </Link>
               <span className="text-slate-300">/</span>
-              <span className="text-slate-500">Late Summer</span>
+              <span className="text-slate-500">Where to stay</span>
             </div>
           </nav>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-            July to September on Anna Maria Island
+            Area and neighborhood planning
           </p>
-          <h1 className="mt-4 text-4xl font-bold text-slate-900 md:text-5xl">Late Summer Guides for Anna Maria Island</h1>
+          <h1 className="mt-4 text-4xl font-bold text-slate-900 md:text-5xl">Where to Stay on Anna Maria Island</h1>
           <p className="mt-6 max-w-3xl text-lg text-slate-700">
-            These late-summer guides help you plan July, August, and September trips with a simple rhythm: beach
-            mornings, pool resets, walkable dining, and sunset nights. Sandbox Beach House is a relaxed Holmes Beach
-            home base for the season.
+            These guides help you choose the best base for your trip: walkable dining, quiet neighborhoods, or easy
+            beach access. Holmes Beach is a central, relaxed option that keeps the island close.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href="/availability"
-              className="rounded-full bg-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-amber-900/10 transition hover:bg-amber-800"
+              className="rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-sky-900/10 transition hover:bg-sky-800"
             >
               Check Availability
             </Link>
@@ -98,7 +96,7 @@ export default function LateSummerHubPage() {
             </Link>
           </div>
 
-          <p className="mt-6 text-sm text-slate-600">{lateSummerPages.length} late-summer guides</p>
+          <p className="mt-6 text-sm text-slate-600">{whereToStayPages.length} area guides</p>
         </div>
       </section>
 
@@ -106,7 +104,7 @@ export default function LateSummerHubPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid gap-12">
             {orderedGroups.map((group, groupIndex) => {
-              const pages = lateSummerGroups[group] ?? [];
+              const pages = whereToStayGroups[group] ?? [];
               if (!pages.length) return null;
               const accent = ACCENTS[groupIndex % ACCENTS.length];
 
@@ -128,7 +126,7 @@ export default function LateSummerHubPage() {
                       return (
                         <Link
                           key={page.slug}
-                          href={`/late-summer/${page.slug}/`}
+                          href={`/where-to-stay/${page.slug}/`}
                           className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${cardAccent.ringClass}`}
                         >
                           <div
@@ -140,7 +138,7 @@ export default function LateSummerHubPage() {
                                 <div
                                   className={`grid h-10 w-10 place-items-center rounded-xl text-white shadow-sm ${cardAccent.iconBgClass}`}
                                 >
-                                  <span className="text-lg">☀️</span>
+                                  <span className="text-lg">{"\u2600\uFE0F"}</span>
                                 </div>
                                 <p
                                   className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${cardAccent.badgeClass}`}
@@ -154,7 +152,7 @@ export default function LateSummerHubPage() {
                             <h3 className="mt-4 text-2xl font-semibold text-slate-900">{page.h1}</h3>
                             <p className="mt-3 text-slate-700">{page.description}</p>
 
-                            <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-amber-800">
+                            <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sky-800">
                               Read guide
                               <span className="transition group-hover:translate-x-0.5">→</span>
                             </p>
@@ -168,11 +166,11 @@ export default function LateSummerHubPage() {
             })}
           </div>
 
-          <section className="mt-14 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-amber-900 p-8 text-white shadow-sm">
-            <h2 className="text-2xl font-bold">Ready to lock in late-summer dates?</h2>
+          <section className="mt-14 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-sky-900 p-8 text-white shadow-sm">
+            <h2 className="text-2xl font-bold">Ready to pick your base?</h2>
             <p className="mt-3 max-w-2xl text-white/85">
-              Start with open dates, then pick the late-summer guide that fits your pace: quiet weeks, family routines,
-              sunset nights, or beach-first itineraries.
+              Start with area comparisons, then narrow by walkability, dining, or quiet neighborhoods. Holmes Beach is a
+              central, easy base for most trips.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

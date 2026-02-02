@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 
-import LateSummerTopic, { getLateSummerMetadata, getLateSummerSlugs } from "../LateSummerTopic";
+import NearTopic, { getNearMetadata, getNearSlugs } from "../NearTopic";
 
 export const dynamicParams = true;
 export const revalidate = 86400;
 export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
-  return getLateSummerSlugs().map((slug) => ({ slug }));
+  return getNearSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  return getLateSummerMetadata(slug);
+  return getNearMetadata(slug);
 }
 
-export default async function LateSummerTopicPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function NearTopicPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return <LateSummerTopic slug={slug} />;
+  return <NearTopic slug={slug} />;
 }

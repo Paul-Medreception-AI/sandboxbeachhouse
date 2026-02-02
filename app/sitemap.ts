@@ -3,7 +3,9 @@ import type { MetadataRoute } from "next";
 import { lateSummerPages } from "@/app/late-summer/data";
 import { holidayPages } from "@/app/holidays/data";
 import { seasonalPages } from "@/app/seasonal/data";
+import { nearPages } from "@/app/near/data";
 import { petFriendlyPages } from "@/app/pet-friendly/data";
+import { whereToStayPages } from "@/app/where-to-stay/data";
 import { POOL_TOPICS } from "@/app/pool/topics";
 import { locations } from "@/lib/locations";
 import { fetchAvailability, calculateOpenRanges } from "@/lib/availability";
@@ -25,9 +27,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/walkable",
     "/locations",
     "/pet-friendly",
-    "/late-summer",
     "/holidays",
     "/seasonal",
+    "/where-to-stay",
+    "/near",
     "/open-dates",
     "/open-dates/last-minute",
     "/events",
@@ -131,6 +134,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...seasonalPages.map((page) => ({
       url: `${BASE_URL}/seasonal/${page.slug}`,
+      lastModified,
+      changeFrequency,
+      priority: 0.6,
+    })),
+    ...nearPages.map((page) => ({
+      url: `${BASE_URL}/near/${page.slug}`,
+      lastModified,
+      changeFrequency,
+      priority: 0.6,
+    })),
+    ...whereToStayPages.map((page) => ({
+      url: `${BASE_URL}/where-to-stay/${page.slug}`,
       lastModified,
       changeFrequency,
       priority: 0.6,

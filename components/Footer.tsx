@@ -47,6 +47,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link className="hover:text-slate-900 hover:underline" href="/where-to-stay">
+                  Where to stay
+                </Link>
+              </li>
+              <li>
                 <Link className="hover:text-slate-900 hover:underline" href="/pool">
                   Pool pages
                 </Link>

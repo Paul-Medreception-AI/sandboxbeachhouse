@@ -118,6 +118,65 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="bg-gradient-to-b from-white to-sky-50 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Planning guides</p>
+              <h2 className="mt-3 text-3xl font-bold">Not sure where to start?</h2>
+              <p className="mt-2 max-w-2xl text-lg text-slate-600">
+                Use quick guides to pick the right base, timing, and trip style before you lock in dates.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <a
+              href="/where-to-stay"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-sky-200/50 blur-3xl" />
+              <div className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Where to stay</p>
+                <h3 className="mt-3 text-2xl font-semibold text-slate-900">Best areas & vibes</h3>
+                <p className="mt-2 text-slate-600">Compare Holmes Beach, Bradenton Beach, and quiet north-end stays.</p>
+                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-800">
+                  Explore areas <span className="transition group-hover:translate-x-0.5">→</span>
+                </p>
+              </div>
+            </a>
+            <a
+              href="/late-summer"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-amber-200/50 blur-3xl" />
+              <div className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Late summer</p>
+                <h3 className="mt-3 text-2xl font-semibold text-slate-900">July–September plans</h3>
+                <p className="mt-2 text-slate-600">Weather tips, itineraries, and the best weeks to book.</p>
+                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-amber-800">
+                  Plan late summer <span className="transition group-hover:translate-x-0.5">→</span>
+                </p>
+              </div>
+            </a>
+            <a
+              href="/pet-friendly"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-200/50 blur-3xl" />
+              <div className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Pet-friendly</p>
+                <h3 className="mt-3 text-2xl font-semibold text-slate-900">Bring your small dog</h3>
+                <p className="mt-2 text-slate-600">Walkable routes, local rules, and easy dog-friendly routines.</p>
+                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800">
+                  See pet-friendly tips <span className="transition group-hover:translate-x-0.5">→</span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-4 md:grid-cols-3">
@@ -139,6 +198,13 @@ export default function HomePage() {
             <p className="mx-auto mt-3 max-w-3xl text-base text-slate-600 sm:text-lg">
               Pick your ideal dates right on this page. We sync daily with our BeachRentals calendar ({`property #140`}) so
               you always see the latest availability before booking direct or through VRBO.
+            </p>
+            <p className="mx-auto mt-3 max-w-3xl text-sm text-slate-500">
+              Not sure where to stay? Start with the{" "}
+              <a className="font-semibold text-slate-700 hover:underline" href="/where-to-stay">
+                Where to stay guide
+              </a>
+              .
             </p>
           </div>
 
