@@ -1,6 +1,7 @@
 import type { EventRecord, EventCategory, EventHub } from "./events-types";
 import { fetchAllEvents } from "./events-source";
 import { normalizeEvents } from "./events-normalize";
+import { fallbackEvents } from "./events-fallback";
 
 export const eventCategories: EventCategory[] = [
   {
@@ -158,13 +159,33 @@ export async function getEvents(forceRefresh = false): Promise<EventRecord[]> {
 
   try {
     const rawEvents = await fetchAllEvents();
-    cachedEvents = normalizeEvents(rawEvents);
+    const fetchedEvents = normalizeEvents(rawEvents);
+    const fallbackNormalizedEvents = normalizeEvents(fallbackEvents);
+    
+    // Combine fetched events with fallback events, avoiding duplicates by title+date
+    const combinedEvents = [...fetchedEvents];
+    fallbackNormalizedEvents.forEach(fallbackEvent => {
+      const isDuplicate = combinedEvents.some(
+        existing => existing.title === fallbackEvent.title && 
+                   existing.startDate === fallbackEvent.startDate
+      );
+      if (!isDuplicate) {
+        combinedEvents.push(fallbackEvent);
+      }
+    });
+    
+    cachedEvents = combinedEvents.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
     cacheTimestamp = now;
-    console.log(`✅ Events cache refreshed: ${cachedEvents.length} events loaded`);
+    console.log(`✅ Events cache refreshed: ${fetchedEvents.length} fetched + ${fallbackNormalizedEvents.length} fallback = ${cachedEvents.length} total events`);
     return cachedEvents;
   } catch (error) {
     console.error("Error fetching events:", error);
-    return cachedEvents || [];
+    // If fetch fails, return fallback events only
+    if (!cachedEvents) {
+      cachedEvents = normalizeEvents(fallbackEvents);
+      cacheTimestamp = now;
+    }
+    return cachedEvents;
   }
 }
 
