@@ -19,9 +19,9 @@ function categorizeEvent(raw: RawEvent): string[] {
   const descLower = (raw.description || "").toLowerCase();
   const combined = `${titleLower} ${descLower}`;
 
-  if (/\b(concert|band|jazz|blues|singer|musician|acoustic|orchestra|symphony)\b|live music|music festival|music event|musical performance/.test(combined)) categories.push("music-festivals");
+  if (/\b(concert|band|jazz|blues|singer|songwriter|musician|acoustic|orchestra|symphony|performer)\b|live music|music festival|music event|musical performance/.test(combined)) categories.push("music-festivals");
   if (/\b(food|wine|seafood|culinary|taste|dining|restaurant)\b/.test(combined)) categories.push("food-and-wine");
-  if (/\b(gallery|exhibit|sculpture|artist)\b|art show|art festival|craft fair/.test(combined)) categories.push("arts-and-culture");
+  if (/\b(gallery|exhibit|sculpture|painter|visual art)\b|art show|art festival|craft fair/.test(combined)) categories.push("arts-and-culture");
   if (/\b(holiday|christmas|thanksgiving|new year|easter|fourth of july)\b/.test(combined))
     categories.push("holiday-events");
   if (/\b(family|kid|children|child)\b/.test(combined)) categories.push("family-events");

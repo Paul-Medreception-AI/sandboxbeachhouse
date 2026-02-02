@@ -51,6 +51,30 @@ export async function fetchAMIChamberEvents(): Promise<RawEvent[]> {
   }
 }
 
+export async function fetchHerrigCenterEvents(): Promise<RawEvent[]> {
+  try {
+    console.log("🔄 Fetching Herrig Center events...");
+    const response = await fetch("https://herrigcenter.org/events/?ical=1", {
+      next: { revalidate: 604800 },
+      headers: {
+        "User-Agent": "SandboxBeachHouse/1.0",
+      },
+    });
+    if (!response.ok) {
+      console.error(`❌ Herrig Center fetch failed: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch Herrig Center events: ${response.status}`);
+    }
+    const icsText = await response.text();
+    console.log(`📥 Herrig Center ICS length: ${icsText.length} chars`);
+    const events = parseICS(icsText, "Herrig Center");
+    console.log(`✅ Parsed ${events.length} events from Herrig Center`);
+    return events;
+  } catch (error) {
+    console.error("❌ Error fetching Herrig Center events:", error);
+    return [];
+  }
+}
+
 function parseICS(icsText: string, source: string): RawEvent[] {
   const events: RawEvent[] = [];
   const lines = icsText.split(/\r?\n/);
@@ -145,10 +169,11 @@ function parseICSDate(dateStr: string): string {
 }
 
 export async function fetchAllEvents(): Promise<RawEvent[]> {
-  const [bradentonEvents, amiEvents] = await Promise.all([
+  const [bradentonEvents, amiEvents, herrigEvents] = await Promise.all([
     fetchBradentonGulfIslandsEvents(),
     fetchAMIChamberEvents(),
+    fetchHerrigCenterEvents(),
   ]);
 
-  return [...bradentonEvents, ...amiEvents];
+  return [...bradentonEvents, ...amiEvents, ...herrigEvents];
 }
