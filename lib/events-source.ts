@@ -2,31 +2,51 @@ import type { RawEvent } from "./events-types";
 
 export async function fetchBradentonGulfIslandsEvents(): Promise<RawEvent[]> {
   try {
+    console.log("🔄 Fetching Bradenton Gulf Islands events...");
     const response = await fetch("https://www.bradentongulfislands.com/events/?ical=1", {
       next: { revalidate: 604800 },
+      headers: {
+        "User-Agent": "SandboxBeachHouse/1.0",
+      },
     });
-    if (!response.ok) throw new Error("Failed to fetch Bradenton Gulf Islands events");
+    if (!response.ok) {
+      console.error(`❌ Bradenton Gulf Islands fetch failed: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch Bradenton Gulf Islands events: ${response.status}`);
+    }
     const icsText = await response.text();
-    return parseICS(icsText, "Bradenton Gulf Islands");
+    console.log(`📥 Bradenton Gulf Islands ICS length: ${icsText.length} chars`);
+    const events = parseICS(icsText, "Bradenton Gulf Islands");
+    console.log(`✅ Parsed ${events.length} events from Bradenton Gulf Islands`);
+    return events;
   } catch (error) {
-    console.error("Error fetching Bradenton Gulf Islands events:", error);
+    console.error("❌ Error fetching Bradenton Gulf Islands events:", error);
     return [];
   }
 }
 
 export async function fetchAMIChamberEvents(): Promise<RawEvent[]> {
   try {
+    console.log("🔄 Fetching AMI Chamber events...");
     const response = await fetch(
       "https://www.annamariaislandchamber.org/events/?ical=1&tribe_display=list",
       {
         next: { revalidate: 604800 },
+        headers: {
+          "User-Agent": "SandboxBeachHouse/1.0",
+        },
       }
     );
-    if (!response.ok) throw new Error("Failed to fetch AMI Chamber events");
+    if (!response.ok) {
+      console.error(`❌ AMI Chamber fetch failed: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch AMI Chamber events: ${response.status}`);
+    }
     const icsText = await response.text();
-    return parseICS(icsText, "AMI Chamber");
+    console.log(`📥 AMI Chamber ICS length: ${icsText.length} chars`);
+    const events = parseICS(icsText, "AMI Chamber");
+    console.log(`✅ Parsed ${events.length} events from AMI Chamber`);
+    return events;
   } catch (error) {
-    console.error("Error fetching AMI Chamber events:", error);
+    console.error("❌ Error fetching AMI Chamber events:", error);
     return [];
   }
 }
