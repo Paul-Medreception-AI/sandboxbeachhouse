@@ -1,0 +1,134 @@
+import type { RawEvent } from "./events-types";
+
+export async function fetchBradentonGulfIslandsEvents(): Promise<RawEvent[]> {
+  try {
+    const response = await fetch("https://www.bradentongulfislands.com/events/?ical=1", {
+      next: { revalidate: 604800 },
+    });
+    if (!response.ok) throw new Error("Failed to fetch Bradenton Gulf Islands events");
+    const icsText = await response.text();
+    return parseICS(icsText, "Bradenton Gulf Islands");
+  } catch (error) {
+    console.error("Error fetching Bradenton Gulf Islands events:", error);
+    return [];
+  }
+}
+
+export async function fetchAMIChamberEvents(): Promise<RawEvent[]> {
+  try {
+    const response = await fetch(
+      "https://www.annamariaislandchamber.org/events/?ical=1&tribe_display=list",
+      {
+        next: { revalidate: 604800 },
+      }
+    );
+    if (!response.ok) throw new Error("Failed to fetch AMI Chamber events");
+    const icsText = await response.text();
+    return parseICS(icsText, "AMI Chamber");
+  } catch (error) {
+    console.error("Error fetching AMI Chamber events:", error);
+    return [];
+  }
+}
+
+function parseICS(icsText: string, source: string): RawEvent[] {
+  const events: RawEvent[] = [];
+  const lines = icsText.split(/\r?\n/);
+  let currentEvent: Partial<RawEvent> | null = null;
+  let currentField = "";
+  let currentValue = "";
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    if (line === "BEGIN:VEVENT") {
+      currentEvent = { source, categories: [], tags: [] };
+      currentField = "";
+      currentValue = "";
+    } else if (line === "END:VEVENT" && currentEvent) {
+      if (currentEvent.title && currentEvent.startDate) {
+        events.push(currentEvent as RawEvent);
+      }
+      currentEvent = null;
+    } else if (currentEvent) {
+      if (line.startsWith(" ") && currentField) {
+        currentValue += line.substring(1);
+      } else {
+        if (currentField && currentValue) {
+          processICSField(currentEvent, currentField, currentValue);
+        }
+
+        const colonIndex = line.indexOf(":");
+        if (colonIndex > 0) {
+          currentField = line.substring(0, colonIndex);
+          currentValue = line.substring(colonIndex + 1);
+        } else {
+          currentField = "";
+          currentValue = "";
+        }
+      }
+    }
+  }
+
+  if (currentEvent && currentField && currentValue) {
+    processICSField(currentEvent, currentField, currentValue);
+  }
+
+  return events;
+}
+
+function processICSField(event: Partial<RawEvent>, field: string, value: string) {
+  const fieldName = field.split(";")[0];
+
+  switch (fieldName) {
+    case "UID":
+      event.id = value;
+      break;
+    case "SUMMARY":
+      event.title = decodeICSValue(value);
+      break;
+    case "DESCRIPTION":
+      event.description = decodeICSValue(value);
+      break;
+    case "DTSTART":
+      event.startDate = parseICSDate(value);
+      break;
+    case "DTEND":
+      event.endDate = parseICSDate(value);
+      break;
+    case "LOCATION":
+      event.locationName = decodeICSValue(value);
+      break;
+    case "URL":
+      event.url = value;
+      break;
+    case "CATEGORIES":
+      event.categories = value.split(",").map((c) => c.trim());
+      break;
+  }
+}
+
+function decodeICSValue(value: string): string {
+  return value
+    .replace(/\\n/g, "\n")
+    .replace(/\\,/g, ",")
+    .replace(/\\;/g, ";")
+    .replace(/\\\\/g, "\\");
+}
+
+function parseICSDate(dateStr: string): string {
+  const match = dateStr.match(/^(\d{4})(\d{2})(\d{2})(T(\d{2})(\d{2})(\d{2})Z?)?/);
+  if (!match) return dateStr;
+
+  const [, year, month, day, , hour = "00", minute = "00", second = "00"] = match;
+  return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+}
+
+export async function fetchAllEvents(): Promise<RawEvent[]> {
+  const [bradentonEvents, amiEvents] = await Promise.all([
+    fetchBradentonGulfIslandsEvents(),
+    fetchAMIChamberEvents(),
+  ]);
+
+  return [...bradentonEvents, ...amiEvents];
+}

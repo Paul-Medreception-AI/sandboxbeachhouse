@@ -1,10 +1,13 @@
 import type { MetadataRoute } from "next";
 
 import { lateSummerPages } from "@/app/late-summer/data";
+import { holidayPages } from "@/app/holidays/data";
+import { seasonalPages } from "@/app/seasonal/data";
 import { petFriendlyPages } from "@/app/pet-friendly/data";
 import { POOL_TOPICS } from "@/app/pool/topics";
 import { locations } from "@/lib/locations";
 import { fetchAvailability, calculateOpenRanges } from "@/lib/availability";
+import { getEvents, eventCategories, eventMonthHubs } from "@/lib/events";
 
 const BASE_URL = "https://sandboxbeachhouse.com";
 
@@ -23,8 +26,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/locations",
     "/pet-friendly",
     "/late-summer",
+    "/holidays",
+    "/seasonal",
     "/open-dates",
     "/open-dates/last-minute",
+    "/events",
   ];
 
   // Fetch dynamic open dates
@@ -55,12 +61,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Error generating open dates sitemap:", error);
   }
 
+  // Fetch dynamic events
+  let eventPages: MetadataRoute.Sitemap = [];
+  let eventCategoryPages: MetadataRoute.Sitemap = [];
+  let eventMonthPages: MetadataRoute.Sitemap = [];
+
+  try {
+    const events = await getEvents();
+    eventPages = events.map((event) => ({
+      url: `${BASE_URL}/events/${event.slug}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+
+    eventCategoryPages = eventCategories.map((category) => ({
+      url: `${BASE_URL}/events/category/${category.slug}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
+
+    eventMonthPages = eventMonthHubs.map((hub) => ({
+      url: `${BASE_URL}/events/month/${hub.slug}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
+  } catch (error) {
+    console.error("Error generating events sitemap:", error);
+  }
+
   return [
     ...staticRoutes.map((path) => ({
       url: `${BASE_URL}${path}`,
       lastModified,
       changeFrequency,
-      priority: path === "" ? 1 : path === "/open-dates" ? 0.9 : 0.7,
+      priority: path === "" ? 1 : path === "/open-dates" ? 0.9 : path === "/events" ? 0.8 : 0.7,
     })),
     ...POOL_TOPICS.map((topic) => ({
       url: `${BASE_URL}/pool/${topic.slug}`,
@@ -86,7 +123,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency,
       priority: 0.6,
     })),
+    ...holidayPages.map((page) => ({
+      url: `${BASE_URL}/holidays/${page.slug}`,
+      lastModified,
+      changeFrequency,
+      priority: 0.6,
+    })),
+    ...seasonalPages.map((page) => ({
+      url: `${BASE_URL}/seasonal/${page.slug}`,
+      lastModified,
+      changeFrequency,
+      priority: 0.6,
+    })),
     ...openDatesPages,
     ...monthPages,
+    ...eventPages,
+    ...eventCategoryPages,
+    ...eventMonthPages,
   ];
 }

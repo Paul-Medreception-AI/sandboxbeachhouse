@@ -178,10 +178,89 @@ export default function HomePage() {
         </div>
       </section>
 
+      <UpcomingEventsSection />
+
       <footer className="py-8 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Sandbox Beach House · Holmes Beach, FL
       </footer>
     </main>
+  );
+}
+
+async function UpcomingEventsSection() {
+  const { getUpcomingEvents } = await import("@/lib/events");
+  const events = await getUpcomingEvents(4);
+
+  if (events.length === 0) return null;
+
+  return (
+    <section className="bg-gradient-to-b from-white to-sky-50 py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-10 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">What's Happening</p>
+          <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Upcoming Events on Anna Maria Island</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-600">
+            Plan your visit around local festivals, live music, and seasonal celebrations.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {events.map((event) => {
+            const eventDate = new Date(event.startDate);
+            const dateDisplay = eventDate.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            });
+
+            return (
+              <a
+                key={`${event.slug}-${event.startDate}`}
+                href={`/events/${event.slug}`}
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-sky-200/50 blur-2xl" />
+                <div className="relative">
+                  <div className="mb-3 inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-900">
+                    {dateDisplay}
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900 group-hover:text-sky-800">
+                    {event.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm text-slate-600">{event.excerpt}</p>
+                  {event.badges.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {event.badges.slice(0, 2).map((badge) => (
+                        <span
+                          key={badge}
+                          className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <a
+            href="/events"
+            className="rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-800"
+          >
+            View All Events
+          </a>
+          <a
+            href="/availability"
+            className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
 

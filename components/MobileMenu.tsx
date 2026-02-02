@@ -62,6 +62,13 @@ export default function MobileMenu() {
                 Open Dates
               </Link>
               <Link
+                href="/events"
+                className="rounded-lg px-4 py-3 text-base font-medium text-slate-900 hover:bg-sky-50"
+                onClick={() => setIsOpen(false)}
+              >
+                Events
+              </Link>
+              <Link
                 href="/faq"
                 className="rounded-lg px-4 py-3 text-base font-medium text-slate-900 hover:bg-sky-50"
                 onClick={() => setIsOpen(false)}
