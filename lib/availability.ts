@@ -22,6 +22,67 @@ export type OpenDateRange = {
 };
 
 export async function fetchAvailability(): Promise<AvailabilityData> {
+  // During build time, fetch directly from the API source instead of localhost
+  if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_BASE_URL) {
+    // Fetch directly from BeachRentals API during build
+    const propertyId = 140;
+    const sourceUrl = `https://rentals.beachrentals.mobi/rns/api/calendar/${propertyId}`;
+    
+    const response = await fetch(sourceUrl, {
+      headers: { Accept: "application/json" },
+      next: { revalidate: 86400 },
+    });
+
+    if (!response.ok) {
+      // Return empty data if API fails during build
+      return {
+        ok: false,
+        propertyId,
+        sourceUrl,
+        fetchedAt: new Date().toISOString(),
+        durationMs: 0,
+        blockedDates: [],
+        blockedRanges: [],
+      };
+    }
+
+    const raw = await response.json() as any[];
+    
+    // Process the data (simplified version of API route logic)
+    const blockedDates = Array.from(
+      new Set(
+        raw
+          .filter((day) => typeof day?.Year === "number" && typeof day?.Month === "number" && typeof day?.Day === "number")
+          .map((day) => `${day.Year}-${String(day.Month).padStart(2, "0")}-${String(day.Day).padStart(2, "0")}`),
+      ),
+    ).sort();
+
+    const rangesMap = new Map<string, { start: string; end: string }>();
+    for (const item of raw) {
+      if (!item.Arrive || !item.Depart) continue;
+      const start = parseMdYToIso(item.Arrive);
+      const end = parseMdYToIso(item.Depart);
+      if (!start || !end) continue;
+      const key = `${start}__${end}`;
+      if (!rangesMap.has(key)) {
+        rangesMap.set(key, { start, end });
+      }
+    }
+
+    const blockedRanges = Array.from(rangesMap.values()).sort((a, b) => a.start.localeCompare(b.start));
+
+    return {
+      ok: true,
+      propertyId,
+      sourceUrl,
+      fetchedAt: new Date().toISOString(),
+      durationMs: 0,
+      blockedDates,
+      blockedRanges,
+    };
+  }
+
+  // In development or when BASE_URL is set, use the API route
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   const res = await fetch(`${baseUrl}/api/availability`, {
     next: { revalidate: 86400 },
@@ -30,6 +91,13 @@ export async function fetchAvailability(): Promise<AvailabilityData> {
     throw new Error("Failed to fetch availability");
   }
   return res.json();
+}
+
+function parseMdYToIso(value: string): string | null {
+  const match = value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!match) return null;
+  const [, mm, dd, yyyy] = match;
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 export function calculateOpenRanges(blockedRanges: { start: string; end: string }[]): OpenDateRange[] {
